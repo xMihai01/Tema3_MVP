@@ -11,7 +11,7 @@ namespace Tema3_MVP.ViewModels
     {
         public List<string> personType { get; set; } = new List<string> { "Elev", "Profesor", "Diriginte", "Administrator" };
 
-        public string _userName;
+        private string _userName;
 
         public string UserName
         {
@@ -19,10 +19,10 @@ namespace Tema3_MVP.ViewModels
             set
             {
                 _userName = value;
-                OnPropertyChanged(nameof(UserName));
+                NotifyPropertyChanged(nameof(UserName));
             }
         }
-        public string _password;
+        private string _password;
 
         public string PasswordText
         {
@@ -30,11 +30,11 @@ namespace Tema3_MVP.ViewModels
             set
             {
                 _password = value;
-                OnPropertyChanged(nameof(PasswordText));
+                NotifyPropertyChanged(nameof(PasswordText));
             }
         }
 
-        public string _personType;
+        private string _personType;
 
         public string PersonType
         {
@@ -42,7 +42,7 @@ namespace Tema3_MVP.ViewModels
             set
             {
                 _personType = value;
-                OnPropertyChanged(nameof(PersonType));
+                NotifyPropertyChanged(nameof(PersonType));
             }
         }
         public MainVM()
@@ -51,9 +51,10 @@ namespace Tema3_MVP.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected void NotifyPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

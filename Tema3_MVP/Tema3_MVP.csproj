@@ -59,6 +59,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\EntityLayer\Absenta.cs" />
+    <Compile Include="Models\EntityLayer\Clasa.cs" />
+    <Compile Include="Models\EntityLayer\Elev.cs" />
+    <Compile Include="Models\EntityLayer\Materie.cs" />
+    <Compile Include="Models\EntityLayer\Nota.cs" />
+    <Compile Include="Models\EntityLayer\Profesor.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -97,7 +103,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Models\BusinessLogicLayer\" />
+    <Folder Include="Models\DataAccessLayer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
