@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tema3_MVP.Models.EntityLayer
 {
-    class Elev
+    public class Elev
     {
         private int? _elevID;
 
@@ -70,6 +70,12 @@ namespace Tema3_MVP.Models.EntityLayer
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public Elev(string nume, string prenume)
+        {
+            Nume = nume;
+            Prenume = prenume;
         }
     }
 }
