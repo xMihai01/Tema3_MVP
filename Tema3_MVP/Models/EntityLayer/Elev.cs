@@ -77,5 +77,9 @@ namespace Tema3_MVP.Models.EntityLayer
             Nume = nume;
             Prenume = prenume;
         }
+        public Elev()
+        {
+
+        }
     }
 }

@@ -12,11 +12,10 @@ namespace Tema3_MVP.Utils
     public class DataAccessUtil
     {
         private static string connectionString = @"Data Source=DESKTOP-P7V6FRH\SQLEXPRESS01;Initial Catalog=Tema3;Integrated Security=True";
-        public static SqlConnection connection;
         public static SqlConnection Connect()
         {
-            connection = new SqlConnection(connectionString);
-            return connection;
+            return new SqlConnection(connectionString);
+            
         }
     }
 }

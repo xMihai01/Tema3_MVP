@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Tema3_MVP.Models.EntityLayer;
 using Tema3_MVP.Utils;
+using System.Collections.ObjectModel;
 
 namespace Tema3_MVP.Models.DataAccessLayer
 {
     public class ElevDA
     {
-        public static void AddElev(Elev elev)
+        public void AddElev(Elev elev)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
@@ -28,17 +29,40 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 cmd.ExecuteNonQuery();
             }
         }
-        public static void DeleteElev(int idElev)
+        public void DeleteElev(int? idElev)
         {
-            using (SqlConnection connection = DataAccessUtil.connection)
+            using (SqlConnection connection = DataAccessUtil.Connect())
             {
-                SqlCommand cmd = new SqlCommand("DellElev", connection);
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DeleteElev", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlParameter paramIdElev = new SqlParameter("@id", idElev);
                 cmd.Parameters.Add(paramIdElev);
-                connection.Open();
                 cmd.ExecuteNonQuery();
             }
+        }
+        public ObservableCollection<Elev> GetElevi()
+        {
+            using (SqlConnection connection = DataAccessUtil.Connect())
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("GetElevi", connection);
+                ObservableCollection<Elev> elevi = new ObservableCollection<Elev>();
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Elev p = new Elev();
+                    p.ElevID = reader.GetInt32(0);
+                    p.Nume = reader.GetString(1);//reader[1].ToString();
+                    p.Prenume = reader.GetString(2);
+                    if (reader.IsDBNull(3)) p.ClasaID = null; else p.ClasaID = reader.GetInt32(3);
+                    elevi.Add(p);
+                }
+                reader.Close();
+                return elevi;
+            }
+            
         }
     }
 }

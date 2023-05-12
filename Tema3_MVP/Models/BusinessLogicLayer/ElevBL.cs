@@ -12,22 +12,27 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
     public class ElevBL
     {
         public ObservableCollection<Elev> listaElevi;
+        private ElevDA elevDA = new ElevDA();
 
-
-        ElevBL() {
+        public ElevBL() {
             listaElevi = new ObservableCollection<Elev>();
             
         }
 
         public void AddElev(Elev elev)
         {
-            ElevDA.AddElev(elev);
+            elevDA.AddElev(elev);
             listaElevi.Add(elev);
         }
-        public void DeleteElev(int id)
+        public void DeleteElev(Elev elev)
         {
-            ElevDA.DeleteElev(id);
-            listaElevi.RemoveAt(id - 1);
+            elevDA.DeleteElev(elev.ElevID);
+            listaElevi.Remove(elev);
+        }
+        public ObservableCollection<Elev> GetElevi()
+        {
+            listaElevi = elevDA.GetElevi();
+            return listaElevi;
         }
     }
 }
