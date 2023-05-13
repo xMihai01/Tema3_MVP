@@ -38,6 +38,28 @@ namespace Tema3_MVP.ViewModels
                 _selectedElev = value;
                 NotifyPropertyChanged(nameof(SelectedElev));}
         }
+        private ProfesorBL ProfesorBL = new ProfesorBL();
+        private ObservableCollection<Profesor> _Profesori;
+        public ObservableCollection<Profesor> Profesori
+        {
+            get { return _Profesori; }
+            set
+            {
+                _Profesori = value;
+                NotifyPropertyChanged(nameof(Profesori));
+            }
+        }
+
+        private Profesor _selectedProfesor;
+        public Profesor SelectedProfesor
+        {
+            get { return _selectedProfesor; }
+            set
+            {
+                _selectedProfesor = value;
+                NotifyPropertyChanged(nameof(SelectedProfesor));
+            }
+        }
 
         public AdminVM()
         {
@@ -47,9 +69,14 @@ namespace Tema3_MVP.ViewModels
         {
             Elevi = elevBL.GetElevi();
         }
+        public void UpdateProfesori()
+        {
+            Profesori = ProfesorBL.GetProfesori();
+        }
 
         public ICommand AddElevButtonCommand => new RelayCommand(AddElevButton);
         public ICommand DeleteElevButtonCommand => new RelayCommand(DeleteElevButton);
+        public ICommand UpdateElevButtonCommand => new RelayCommand(UpdateElevButton);
 
         public void AddElevButton()
         {
@@ -73,6 +100,47 @@ namespace Tema3_MVP.ViewModels
             elevBL.DeleteElev(SelectedElev);
             UpdateElevi();
         }
+
+        public void UpdateElevButton()
+        {
+            elevBL.UpdateElev(SelectedElev);
+            UpdateElevi();
+        }
+
+        public ICommand AddProfesorButtonCommand => new RelayCommand(AddProfesorButton);
+        public ICommand DeleteProfesorButtonCommand => new RelayCommand(DeleteProfesorButton);
+        public ICommand UpdateProfesorButtonCommand => new RelayCommand(UpdateProfesorButton);
+
+        public void AddProfesorButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Profesor name: ", "Doloiu Mihai");
+            if (inputDialog.ShowDialog() == true)
+            {
+                string[] dataProfesor = inputDialog.Answer.Split(' ');
+                if (dataProfesor.Count() > 1)
+                {
+                    ProfesorBL.AddProfesor(new Profesor(dataProfesor[0], dataProfesor[1]));
+                    MessageBox.Show("Success! Profesor added!");
+                }
+                else
+                    MessageBox.Show("Failed, you must enter a full name!");
+
+            }
+            UpdateProfesori();
+        }
+        public void DeleteProfesorButton()
+        {
+            ProfesorBL.DeleteProfesor(SelectedProfesor);
+            UpdateProfesori();
+        }
+
+        public void UpdateProfesorButton()
+        {
+            ProfesorBL.UpdateProfesor(SelectedProfesor);
+            UpdateProfesori();
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(string propertyName)
         {

@@ -29,6 +29,11 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
             elevDA.DeleteElev(elev.ElevID);
             listaElevi.Remove(elev);
         }
+        public void UpdateElev(Elev elev)
+        {
+            elevDA.UpdateElev(elev);
+            listaElevi[listaElevi.IndexOf(elev)] = elev;
+        }
         public ObservableCollection<Elev> GetElevi()
         {
             listaElevi = elevDA.GetElevi();

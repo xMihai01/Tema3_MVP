@@ -1,88 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Tema3_MVP.Models.EntityLayer;
 using Tema3_MVP.Utils;
-using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace Tema3_MVP.Models.DataAccessLayer
 {
-    public class ElevDA
+    public class ProfesorDA
     {
-        public void AddElev(Elev elev)
+        public void AddProfesor(Profesor Profesor)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("AddElev", connection);
+                SqlCommand cmd = new SqlCommand("AddProfesor", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramNume = new SqlParameter("@Nume", elev.Nume);
-                SqlParameter paramPrenume = new SqlParameter("@Prenume", elev.Prenume);
-                
+                SqlParameter paramNume = new SqlParameter("@Nume", Profesor.Nume);
+                SqlParameter paramPrenume = new SqlParameter("@Prenume", Profesor.Prenume);
+
                 cmd.Parameters.Add(paramNume);
                 cmd.Parameters.Add(paramPrenume);
-                
+
                 cmd.ExecuteNonQuery();
             }
         }
-        public void DeleteElev(int? idElev)
+        public void DeleteProfesor(int? idProfesor)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("DeleteElev", connection);
+                SqlCommand cmd = new SqlCommand("DeleteProfesor", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramIdElev = new SqlParameter("@id", idElev);
-                cmd.Parameters.Add(paramIdElev);
+                SqlParameter paramIdProfesor = new SqlParameter("@id", idProfesor);
+                cmd.Parameters.Add(paramIdProfesor);
                 cmd.ExecuteNonQuery();
             }
         }
-        public ObservableCollection<Elev> GetElevi()
+        public ObservableCollection<Profesor> GetProfesori()
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("GetElevi", connection);
-                ObservableCollection<Elev> elevi = new ObservableCollection<Elev>();
+                SqlCommand cmd = new SqlCommand("GetProfesori", connection);
+                ObservableCollection<Profesor> Profesori = new ObservableCollection<Profesor>();
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Elev p = new Elev();
-                    p.ElevID = reader.GetInt32(0);
+                    Profesor p = new Profesor();
+                    p.ProfesorID = reader.GetInt32(0);
                     p.Nume = reader.GetString(1);//reader[1].ToString();
                     p.Prenume = reader.GetString(2);
                     if (reader.IsDBNull(3)) p.ClasaID = null; else p.ClasaID = reader.GetInt32(3);
-                    elevi.Add(p);
+                    Profesori.Add(p);
                 }
                 reader.Close();
-                return elevi;
+                return Profesori;
             }
-         
+
         }
-        public void UpdateElev(Elev elev)
+        public void UpdateProfesor(Profesor Profesor)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UpdateElev", connection);
+                SqlCommand cmd = new SqlCommand("UpdateProfesor", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramID = new SqlParameter("@ElevID", elev.ElevID);
-                SqlParameter paramNume = new SqlParameter("@Nume", elev.Nume);
-                SqlParameter paramPrenume = new SqlParameter("@Prenume", elev.Prenume);
+                SqlParameter paramID = new SqlParameter("@ProfesorID", Profesor.ProfesorID);
+                SqlParameter paramNume = new SqlParameter("@Nume", Profesor.Nume);
+                SqlParameter paramPrenume = new SqlParameter("@Prenume", Profesor.Prenume);
                 SqlParameter paramClasaID;
-                if (elev.ClasaID == null)
+                if (Profesor.ClasaID == null)
                 {
                     paramClasaID = new SqlParameter("@ClasaID", DBNull.Value);
                 }
                 else
                 {
-                    paramClasaID = new SqlParameter("@ClasaID", elev.ClasaID);
+                    paramClasaID = new SqlParameter("@ClasaID", Profesor.ClasaID);
                 }
                 cmd.Parameters.Add(paramID);
                 cmd.Parameters.Add(paramNume);
@@ -92,7 +92,8 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 try
                 {
                     cmd.ExecuteNonQuery();
-                } catch(SqlException)
+                }
+                catch (SqlException)
                 {
                     MessageBox.Show("Couldn't update entry. Given id_clasa couldn't be found or an unknown error occurred");
                 }

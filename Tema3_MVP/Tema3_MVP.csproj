@@ -133,7 +133,9 @@
     </Compile>
     <Compile Include="Commands\RelayCommands.cs" />
     <Compile Include="Models\BusinessLogicLayer\ElevBL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProfesorBL.cs" />
     <Compile Include="Models\DataAccessLayer\ElevDA.cs" />
+    <Compile Include="Models\DataAccessLayer\ProfesorDA.cs" />
     <Compile Include="Models\EntityLayer\Absenta.cs" />
     <Compile Include="Models\EntityLayer\Clasa.cs" />
     <Compile Include="Models\EntityLayer\Elev.cs" />

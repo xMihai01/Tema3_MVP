@@ -9,20 +9,29 @@
     <Grid>
         <Button Command="{Binding AddElevButtonCommand}" Content="Adaugare Elev" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Margin="10,25,0,0" Height="24"/>
         <Button Command="{Binding DeleteElevButtonCommand}" Content="Stergere Elev" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="205" RenderTransformOrigin="-0.162,0.155" Height="25"/>
-        <Button Content="Adaugare Profesor" HorizontalAlignment="Left" Margin="321,0,0,0" VerticalAlignment="Top" Width="160"/>
-        <Button Content="Stergere Profesor" HorizontalAlignment="Left" Margin="486,0,0,0" VerticalAlignment="Top" Width="148"/>
+        <Button Command="{Binding AddProfesorButtonCommand}" Content="Adaugare Profesor" HorizontalAlignment="Left" Margin="264,25,0,0" VerticalAlignment="Top" Width="195" Height="24"/>
+        <Button Command="{Binding DeleteProfesorButtonCommand}" Content="Stergere Profesor" HorizontalAlignment="Left" Margin="264,69,0,0" VerticalAlignment="Top" Width="195" Height="27"/>
         <Button Content="Adaugare Clasa" HorizontalAlignment="Left" Margin="639,0,0,0" VerticalAlignment="Top" Width="141" RenderTransformOrigin="0.257,0.378"/>
-        <Button Content="Stergere Clasa" HorizontalAlignment="Left" Margin="321,111,0,0" VerticalAlignment="Top" Width="141"/>
-        <Button Content="Modificare Clasa" HorizontalAlignment="Left" Margin="444,86,0,0" VerticalAlignment="Top" Width="141"/>
-        <DataGrid Grid.Column="0" IsReadOnly="True" ItemsSource="{Binding Elevi}" SelectedItem="{Binding SelectedElev}" Margin="10,166,585,86" AutoGenerateColumns="False">
+        <Button Content="Stergere Clasa" HorizontalAlignment="Left" Margin="594,166,0,0" VerticalAlignment="Top" Width="141"/>
+        <Button Content="Modificare Clasa" HorizontalAlignment="Left" Margin="594,126,0,0" VerticalAlignment="Top" Width="141"/>
+        <DataGrid Grid.Column="0" ItemsSource="{Binding Elevi}" SelectedItem="{Binding SelectedElev}" Margin="10,166,585,86" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="id__elev" Binding="{Binding ElevID}"/>
+                <DataGridTextColumn Header="id__elev" Binding="{Binding ElevID}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="nume" Binding="{Binding Nume}"/>
                 <DataGridTextColumn Header="prenume" Binding="{Binding Prenume}"/>
                 <DataGridTextColumn Header="id__clasa" Binding="{Binding ClasaID}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Modificare Elev" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Height="25" Width="205"/>
+        <Button Command="{Binding UpdateElevButtonCommand}" Content="Modificare Elev" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Height="25" Width="205"/>
+        <DataGrid Grid.Column="0" ItemsSource="{Binding Profesori}" SelectedItem="{Binding SelectedProfesor}" Margin="264,166,341,86" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id__profesor" Binding="{Binding ProfesorID}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="nume" Binding="{Binding Nume}"/>
+                <DataGridTextColumn Header="prenume" Binding="{Binding Prenume}"/>
+                <DataGridTextColumn Header="id__clasa" Binding="{Binding ClasaID}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Command="{Binding UpdateProfesorButtonCommand}" Content="Modificare Profesor" HorizontalAlignment="Left" Margin="264,121,0,0" VerticalAlignment="Top" Height="25" Width="195"/>
 
     </Grid>
 </Window>

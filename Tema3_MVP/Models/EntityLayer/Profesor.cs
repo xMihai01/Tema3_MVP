@@ -52,11 +52,33 @@ namespace Tema3_MVP.Models.EntityLayer
                 NotifyPropertyChanged(nameof(Prenume));
             }
         }
+        private int? _clasaID;
+        public int? ClasaID
+        {
+            get
+            {
+                return _clasaID;
+            }
+            set
+            {
+                _clasaID = value;
+                NotifyPropertyChanged(nameof(ClasaID));
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public Profesor(string nume, string prenume)
+        {
+            Nume = nume;
+            Prenume = prenume;
+        }
+        public Profesor()
+        {
+
         }
     }
 }
