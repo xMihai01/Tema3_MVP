@@ -61,9 +61,36 @@ namespace Tema3_MVP.ViewModels
             }
         }
 
+        private ClasaBL clasaBL = new ClasaBL();
+        private ObservableCollection<Clasa> _clase;
+        public ObservableCollection<Clasa> Clase
+        {
+            get { return _clase; }
+            set
+            {
+                _clase = value;
+                NotifyPropertyChanged(nameof(Clase));
+            }
+        }
+
+        private Clasa _selectedClasa;
+        public Clasa SelectedClasa
+        {
+            get { return _selectedClasa; }
+            set
+            {
+                _selectedClasa = value;
+                NotifyPropertyChanged(nameof(SelectedClasa));
+            }
+        }
+
+        private SpecializareBL specializareBL = new SpecializareBL();
+
         public AdminVM()
         {
             Elevi = elevBL.GetElevi();
+            Profesori = ProfesorBL.GetProfesori();
+            Clase = clasaBL.GetClase();
         }
         public void UpdateElevi()
         {
@@ -72,6 +99,10 @@ namespace Tema3_MVP.ViewModels
         public void UpdateProfesori()
         {
             Profesori = ProfesorBL.GetProfesori();
+        }
+        public void UpdateClase()
+        {
+            Clase = clasaBL.GetClase();
         }
 
         public ICommand AddElevButtonCommand => new RelayCommand(AddElevButton);
@@ -140,6 +171,61 @@ namespace Tema3_MVP.ViewModels
             UpdateProfesori();
         }
 
+        public ICommand AddClasaButtonCommand => new RelayCommand(AddClasaButton);
+        public ICommand DeleteClasaButtonCommand => new RelayCommand(DeleteClasaButton);
+        public ICommand UpdateClasaButtonCommand => new RelayCommand(UpdateClasaButton);
+
+        public void AddClasaButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Clasa name: ", "11B");
+            if (inputDialog.ShowDialog() == true)
+            {
+
+                clasaBL.AddClasa(new Clasa(inputDialog.Answer));
+                MessageBox.Show("Success! Clasa added!");
+            }
+            UpdateClase();
+        }
+        public void DeleteClasaButton()
+        {
+            clasaBL.DeleteClasa(SelectedClasa);
+            UpdateClase();
+        }
+
+        public void UpdateClasaButton()
+        {
+            clasaBL.UpdateClasa(SelectedClasa);
+            UpdateClase();
+        }
+
+        public ICommand AddSpecializareButtonCommand => new RelayCommand(AddSpecializareButton);
+        public ICommand DeleteSpecializareButtonCommand => new RelayCommand(DeleteSpecializareButton);
+
+        public void AddSpecializareButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Specializare name: ", "info aplicata", specializareBL.GetSpecializariStringList());
+            if (inputDialog.ShowDialog() == true)
+            {
+                specializareBL.AddSpecializare(new Specializare(inputDialog.Answer));
+                MessageBox.Show("Success! Specializare added!");
+            }
+        }
+        public void DeleteSpecializareButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Specializare ID: ", "0", specializareBL.GetSpecializariStringList());
+            if (inputDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    specializareBL.DeleteSpecializare(Int32.Parse(inputDialog.Answer));
+                    MessageBox.Show("Success! Specializare with id " + inputDialog.Answer + " removed!");
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(string propertyName)

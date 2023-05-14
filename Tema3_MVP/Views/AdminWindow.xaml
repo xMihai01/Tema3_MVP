@@ -11,9 +11,9 @@
         <Button Command="{Binding DeleteElevButtonCommand}" Content="Stergere Elev" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="205" RenderTransformOrigin="-0.162,0.155" Height="25"/>
         <Button Command="{Binding AddProfesorButtonCommand}" Content="Adaugare Profesor" HorizontalAlignment="Left" Margin="264,25,0,0" VerticalAlignment="Top" Width="195" Height="24"/>
         <Button Command="{Binding DeleteProfesorButtonCommand}" Content="Stergere Profesor" HorizontalAlignment="Left" Margin="264,69,0,0" VerticalAlignment="Top" Width="195" Height="27"/>
-        <Button Content="Adaugare Clasa" HorizontalAlignment="Left" Margin="639,0,0,0" VerticalAlignment="Top" Width="141" RenderTransformOrigin="0.257,0.378"/>
-        <Button Content="Stergere Clasa" HorizontalAlignment="Left" Margin="594,166,0,0" VerticalAlignment="Top" Width="141"/>
-        <Button Content="Modificare Clasa" HorizontalAlignment="Left" Margin="594,126,0,0" VerticalAlignment="Top" Width="141"/>
+        <Button Command="{Binding AddClasaButtonCommand}" Content="Adaugare Clasa" HorizontalAlignment="Left" Margin="496,27,0,0" VerticalAlignment="Top" Width="141" RenderTransformOrigin="0.257,0.378"/>
+        <Button Command="{Binding DeleteClasaButtonCommand}" Content="Stergere Clasa" HorizontalAlignment="Left" Margin="496,69,0,0" VerticalAlignment="Top" Width="141" Height="27"/>
+        <Button Command="{Binding UpdateClasaButtonCommand}" Content="Modificare Clasa" HorizontalAlignment="Left" Margin="496,121,0,0" VerticalAlignment="Top" Width="141" Height="25"/>
         <DataGrid Grid.Column="0" ItemsSource="{Binding Elevi}" SelectedItem="{Binding SelectedElev}" Margin="10,166,585,86" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="id__elev" Binding="{Binding ElevID}" IsReadOnly="True"/>
@@ -32,6 +32,15 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Command="{Binding UpdateProfesorButtonCommand}" Content="Modificare Profesor" HorizontalAlignment="Left" Margin="264,121,0,0" VerticalAlignment="Top" Height="25" Width="195"/>
-
+        <DataGrid Grid.Column="0" ItemsSource="{Binding Clase}" SelectedItem="{Binding SelectedClasa}" Margin="496,166,41,86" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id__clasa" Binding="{Binding ClasaID}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="nume__clasa" Binding="{Binding Nume}"/>
+                <DataGridTextColumn Header="id__diriginte" Binding="{Binding DiriginteID}"/>
+                <DataGridTextColumn Header="id__specializare" Binding="{Binding SpecializareID}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Command="{Binding AddSpecializareButtonCommand}" Content="Adaugare Specializare" HorizontalAlignment="Left" Margin="496,367,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+        <Button Command="{Binding DeleteSpecializareButtonCommand}" Content="Stergere Specializare" HorizontalAlignment="Left" Margin="496,392,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
     </Grid>
 </Window>

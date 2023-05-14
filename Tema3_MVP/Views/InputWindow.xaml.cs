@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,8 @@ namespace Tema3_MVP.Views
     /// </summary>
     public partial class InputWindow : Window
     {
-        string[] list;
-        public InputWindow(string question, string defaultAnswer = "", string[] list = null)
+        ObservableCollection<string> list;
+        public InputWindow(string question, string defaultAnswer = "", ObservableCollection<string> list = null)
         {
             InitializeComponent();
             lblQuestion.Content = question;

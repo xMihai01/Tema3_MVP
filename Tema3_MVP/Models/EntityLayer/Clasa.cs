@@ -49,17 +49,17 @@ namespace Tema3_MVP.Models.EntityLayer
                 NotifyPropertyChanged(nameof(Nume));
             }
         }
-        private string _specializare;
-        public string Specializare
+        private int? _specializareID;
+        public int? SpecializareID
         {
             get
             {
-                return _specializare;
+                return _specializareID;
             }
             set
             {
-                _specializare = value;
-                NotifyPropertyChanged(nameof(Specializare));
+                _specializareID = value;
+                NotifyPropertyChanged(nameof(SpecializareID));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -68,5 +68,14 @@ namespace Tema3_MVP.Models.EntityLayer
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+        public Clasa()
+        {
+
+        }
+        public Clasa(string nume)
+        {
+            Nume = nume;
+        }
     }
+  
 }
