@@ -368,6 +368,7 @@ namespace Tema3_MVP.ViewModels
         }
 
 
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(string propertyName)
         {

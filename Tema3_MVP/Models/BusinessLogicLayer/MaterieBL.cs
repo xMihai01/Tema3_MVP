@@ -24,12 +24,28 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
         public ObservableCollection<string> GetMateriiStringList()
         {
 
-            ObservableCollection<Materie> materiiList = MaterieDA.GetSpecializari();
+            ObservableCollection<Materie> materiiList = MaterieDA.GetMaterii();
             ObservableCollection<string> materii = new ObservableCollection<string>();
 
             foreach (Materie mat in materiiList)
             {
                 materii.Add(mat.Nume + " " + mat.MaterieID.ToString());
+            }
+            return materii;
+        }
+        public ObservableCollection<Materie> GetMateriiForClasaAndProfesor(int? ClasaID, int? ProfesorID)
+        {
+            return MaterieDA.GetMateriiForClasaAndProfesor(ClasaID, ProfesorID);
+        }
+        public ObservableCollection<string> GetMateriiForClasaAndProfesorStringList(int? ClasaID, int? ProfesorID)
+        {
+
+            ObservableCollection<Materie> materiiList = MaterieDA.GetMateriiForClasaAndProfesor(ClasaID, ProfesorID);
+            ObservableCollection<string> materii = new ObservableCollection<string>();
+
+            foreach (Materie mat in materiiList)
+            {
+                materii.Add(mat.Nume);
             }
             return materii;
         }

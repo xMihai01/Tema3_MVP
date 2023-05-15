@@ -7,24 +7,36 @@ using System.Threading.Tasks;
 
 namespace Tema3_MVP.Models.EntityLayer
 {
-    public class Absenta
+    public class ElevMaterie
     {
-        private int? _absentaID;
+        private int? _ElevID;
 
-        public int? AbsentaID
+        public int? ElevID
         {
             get
             {
-                return _absentaID;
+                return _ElevID;
             }
             set
             {
-                _absentaID = value;
-                NotifyPropertyChanged(nameof(AbsentaID));
+                _ElevID = value;
+                NotifyPropertyChanged(nameof(ElevID));
+            }
+        }
+        private int? _MaterieID;
+        public int? MaterieID
+        {
+            get
+            {
+                return _MaterieID;
+            }
+            set
+            {
+                _MaterieID = value;
+                NotifyPropertyChanged(nameof(MaterieID));
             }
         }
         private int? _ElevMaterieID;
-
         public int? ElevMaterieID
         {
             get
@@ -37,35 +49,30 @@ namespace Tema3_MVP.Models.EntityLayer
                 NotifyPropertyChanged(nameof(ElevMaterieID));
             }
         }
-
-        private string _tip;
-
-        public string Tip
+        private int? _SemestruID;
+        public int? SemestruID
         {
             get
             {
-                return _tip;
+                return _SemestruID;
             }
             set
             {
-                _tip = value;
-                NotifyPropertyChanged(nameof(Tip));
+                _SemestruID = value;
+                NotifyPropertyChanged(nameof(SemestruID));
             }
         }
-
-
-        private DateTime _date;
-
-        public DateTime Date
+        private float _Medie;
+        public float Medie
         {
             get
             {
-                return _date;
+                return _Medie;
             }
             set
             {
-                _date = value;
-                NotifyPropertyChanged(nameof(Date));
+                _Medie = value;
+                NotifyPropertyChanged(nameof(Medie));
             }
         }
 
@@ -74,6 +81,12 @@ namespace Tema3_MVP.Models.EntityLayer
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public ElevMaterie(int? elevID, int? materieID, int? semestruID)
+        {
+            ElevID = elevID;
+            MaterieID = materieID;
+            SemestruID = semestruID;
         }
     }
 }

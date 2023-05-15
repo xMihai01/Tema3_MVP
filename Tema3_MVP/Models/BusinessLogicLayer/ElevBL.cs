@@ -39,5 +39,9 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
             listaElevi = elevDA.GetElevi();
             return listaElevi;
         }
+        public ObservableCollection<Elev> GetEleviForClasa(int? ClasaID)
+        {
+            return elevDA.GetEleviForClasa(ClasaID);
+        }
     }
 }

@@ -1,0 +1,19 @@
+﻿<Window x:Class="Tema3_MVP.Views.ProfesorAbsenteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tema3_MVP.Views"
+        mc:Ignorable="d"
+        Title="ProfesorAbsenteWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid Grid.Column="0" ItemsSource="{Binding Absente}" SelectedItem="{Binding SelectedAbsenta}" Margin="55,88,529,164" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="tip" Binding="{Binding Tip}"/>
+                <DataGridTextColumn Header="date" Binding="{Binding Date}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="{Binding LabelInfoAbsente}" HorizontalAlignment="Left" Margin="29,62,0,0" VerticalAlignment="Top" Width="345" Height="26"/>
+        <Button Command="{Binding AddAbsentaButtonCommand}" Content="Add Absenta" HorizontalAlignment="Left" Margin="472,104,0,0" VerticalAlignment="Top" Height="22" Width="109"/>
+    </Grid>
+</Window>

@@ -20,7 +20,7 @@ namespace Tema3_MVP.Views
     /// </summary>
     public partial class ProfesorWindow : Window
     {
-        private ProfesorVM profesorVM;
+        public ProfesorVM profesorVM;
   
         public ProfesorWindow(int? profID)
         {

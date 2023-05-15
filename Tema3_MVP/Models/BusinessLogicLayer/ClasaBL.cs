@@ -40,5 +40,22 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
             listaClase = ClasaDA.GetClase();
             return listaClase;
         }
+        public ObservableCollection<Clasa> GetClaseForProfesor(int? ProfesorID)
+        {
+            return ClasaDA.GetClaseForProfesor(ProfesorID);
+        }
+        public ObservableCollection<string> GetClaseForProfesorAsStringList(int? ProfesorID)
+        {
+
+            ObservableCollection<Clasa> claseList = ClasaDA.GetClaseForProfesor(ProfesorID);
+            ObservableCollection<string> clase = new ObservableCollection<string>();
+
+            foreach (Clasa cls in claseList)
+            {
+                clase.Add(cls.Nume);
+            }
+            return clase;
+
+        }
     }
 }

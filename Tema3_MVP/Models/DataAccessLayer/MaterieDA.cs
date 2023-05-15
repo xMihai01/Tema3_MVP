@@ -46,7 +46,7 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 }
             }
         }
-        public ObservableCollection<Materie> GetSpecializari()
+        public ObservableCollection<Materie> GetMaterii()
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
@@ -89,6 +89,31 @@ namespace Tema3_MVP.Models.DataAccessLayer
                     MessageBox.Show("Couldn't update entry. unknown error occurred");
                 }
             }
+        }
+        public ObservableCollection<Materie> GetMateriiForClasaAndProfesor(int? ClasaID, int? ProfesorID)
+        {
+            using (SqlConnection connection = DataAccessUtil.Connect())
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("GetMateriiForClasaAndProfesor", connection);
+                SqlParameter paramClasaID = new SqlParameter("@ClasaID", ClasaID);
+                SqlParameter paramProfID = new SqlParameter("@ProfesorID", ProfesorID);
+                cmd.Parameters.Add(paramClasaID);
+                cmd.Parameters.Add(paramProfID);
+                ObservableCollection<Materie> Materii = new ObservableCollection<Materie>();
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Materie m = new Materie();
+                    m.MaterieID = reader.GetInt32(0);
+                    m.Nume = reader.GetString(1);
+                    Materii.Add(m);
+                }
+                reader.Close();
+                return Materii;
+            }
+
         }
     }
 }

@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="ProfesorWindow" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid Grid.Column="0" ItemsSource="{Binding Elevi}" SelectedItem="{Binding SelectedElev}" Margin="55,88,459,164" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id__elev" Binding="{Binding ElevID}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="nume" Binding="{Binding Nume}"/>
+                <DataGridTextColumn Header="prenume" Binding="{Binding Prenume}"/>
+                <DataGridTextColumn Header="id__clasa" Binding="{Binding ClasaID}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="ComboClasses" HorizontalAlignment="Left" Margin="544,72,0,0" VerticalAlignment="Top" Width="148" Height="26" ItemsSource="{Binding Classes}" SelectedValue="{Binding SelectedClass}"/>
+        <Label Content="Clasa" HorizontalAlignment="Left" Margin="501,72,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboMaterii" HorizontalAlignment="Left" Margin="544,130,0,0" VerticalAlignment="Top" Width="148" Height="26" ItemsSource="{Binding Materii}" SelectedValue="{Binding SelectedMaterie}"/>
+        <Label Content="Materii" HorizontalAlignment="Left" Margin="492,130,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboSemestre" HorizontalAlignment="Left" Margin="544,179,0,0" VerticalAlignment="Top" Width="148" Height="26" ItemsSource="{Binding Semestre}" SelectedValue="{Binding SelectedSemestru}"/>
+        <Label Content="Semestru" HorizontalAlignment="Left" Margin="479,179,0,0" VerticalAlignment="Top"/>
+        <Button Command="{Binding ViewAbsenteButtonCommand}" Content="View Absente" HorizontalAlignment="Left" Margin="576,250,0,0" VerticalAlignment="Top" Width="84" Height="20"/>
+
+
     </Grid>
 </Window>

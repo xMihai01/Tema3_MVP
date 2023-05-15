@@ -105,5 +105,30 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 }
             }
         }
+        public ObservableCollection<Elev> GetEleviForClasa(int? ClasaID)
+        {
+            using (SqlConnection connection = DataAccessUtil.Connect())
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("GetEleviForClase", connection);
+                SqlParameter paramID = new SqlParameter("@Id_clasa", ClasaID);
+                cmd.Parameters.Add(paramID);
+                ObservableCollection<Elev> elevi = new ObservableCollection<Elev>();
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Elev p = new Elev();
+                    p.ElevID = reader.GetInt32(0);
+                    p.Nume = reader.GetString(1);
+                    p.Prenume = reader.GetString(2);
+                    if (reader.IsDBNull(3)) p.ClasaID = null; else p.ClasaID = reader.GetInt32(3);
+                    elevi.Add(p);
+                }
+                reader.Close();
+                return elevi;
+            }
+
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
 
             return SemestruDA.GetSemestre();
         }
-        public ObservableCollection<string> GetSemestreAsStringList()
+        public ObservableCollection<string> GetSemestreAsStringList(bool requiresID = true)
         {
 
             ObservableCollection<Semestru> semList = SemestruDA.GetSemestre();
@@ -34,9 +34,13 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
 
             foreach (Semestru sem in semList)
             {
-                semestre.Add(sem.Nume + " " + sem.SemestruID.ToString());
+                if (requiresID)
+                    semestre.Add(sem.Nume + " " + sem.SemestruID.ToString());
+                else
+                    semestre.Add(sem.Nume);
             }
             return semestre;
         }
+
     }
 }

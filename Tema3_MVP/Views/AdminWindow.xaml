@@ -50,6 +50,7 @@
         <Button Command="{Binding DeleteMaterieFromProfesorButtonCommand}" Content="Del Materie la prof" HorizontalAlignment="Left" Margin="367,71,0,0" VerticalAlignment="Top" Height="25" Width="110"/>
         <Button Command="{Binding AddSemestruButtonCommand}" Content="Adaugare Semestru" HorizontalAlignment="Left" Margin="46,362,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
         <Button Command="{Binding DeleteSemestruButtonCommand}" Content="Stergere Semestru" HorizontalAlignment="Left" Margin="46,387,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+        <Button Content="Back in main window" HorizontalAlignment="Left" Margin="290,375,0,0" VerticalAlignment="Top" Height="25" Width="132" Click="Button_Click"/>
 
     </Grid>
 </Window>

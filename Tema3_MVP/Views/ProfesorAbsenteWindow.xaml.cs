@@ -11,27 +11,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Tema3_MVP.Models.EntityLayer;
 using Tema3_MVP.ViewModels;
 
 namespace Tema3_MVP.Views
 {
     /// <summary>
-    /// Interaction logic for AdminWindow.xaml
+    /// Interaction logic for ProfesorAbsenteWindow.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class ProfesorAbsenteWindow : Window
     {
-        public AdminVM adminVM;
-        public AdminWindow()
+        public ProfesorAbsenteVM profesorAbsenteVM;
+        public ProfesorAbsenteWindow(Elev elev, Materie materie, Semestru semestru)
         {
             InitializeComponent();
-            adminVM = new AdminVM();
-            DataContext = adminVM;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new MainWindow().Show();
-            this.Close();
+            profesorAbsenteVM = new ProfesorAbsenteVM(elev, materie, semestru);
+            DataContext = profesorAbsenteVM;
         }
     }
 }
