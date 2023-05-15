@@ -12,30 +12,30 @@ using Tema3_MVP.Utils;
 
 namespace Tema3_MVP.Models.DataAccessLayer
 {
-    public class SpecializareDA
+    public class MaterieDA
     {
-        public void AddSpecializare(Specializare Specializare)
+        public void AddMaterie(Materie Materie)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("AddSpecializare", connection);
+                SqlCommand cmd = new SqlCommand("AddMaterie", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramNume = new SqlParameter("@Nume", Specializare.Nume);
+                SqlParameter paramNume = new SqlParameter("@Nume", Materie.Nume);
 
                 cmd.Parameters.Add(paramNume);
                 cmd.ExecuteNonQuery();
             }
         }
-        public void DeleteSpecializare(int? idSpecializare)
+        public void DeleteMaterie(int? idMaterie)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("DeleteSpecializare", connection);
+                SqlCommand cmd = new SqlCommand("DeleteMaterie", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramIdSpecializare = new SqlParameter("@id", idSpecializare);
-                cmd.Parameters.Add(paramIdSpecializare);
+                SqlParameter paramIdMaterie = new SqlParameter("@id", idMaterie);
+                cmd.Parameters.Add(paramIdMaterie);
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -46,37 +46,37 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 }
             }
         }
-        public ObservableCollection<Specializare> GetSpecializari()
+        public ObservableCollection<Materie> GetSpecializari()
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("GetSpecializari", connection);
-                ObservableCollection<Specializare> Specializarei = new ObservableCollection<Specializare>();
+                SqlCommand cmd = new SqlCommand("GetMaterii", connection);
+                ObservableCollection<Materie> Materii = new ObservableCollection<Materie>();
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Specializare p = new Specializare();
-                    p.SpecializareID = reader.GetInt32(0);
-                    p.Nume = reader.GetString(1);
-                    Specializarei.Add(p);
+                    Materie m = new Materie();
+                    m.MaterieID = reader.GetInt32(0);
+                    m.Nume = reader.GetString(1);
+                    Materii.Add(m);
                 }
                 reader.Close();
-                return Specializarei;
+                return Materii;
             }
 
         }
-        public void UpdateSpecializare(Specializare Specializare)
+        public void UpdateMaterie(Materie Materie)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UpdateSpecializare", connection);
+                SqlCommand cmd = new SqlCommand("UpdateMaterie", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramID = new SqlParameter("@SpecializareID", Specializare.SpecializareID);
-                SqlParameter paramNume = new SqlParameter("@Nume", Specializare.Nume);
-          
+                SqlParameter paramID = new SqlParameter("@MaterieID", Materie.MaterieID);
+                SqlParameter paramNume = new SqlParameter("@Nume", Materie.Nume);
+
                 cmd.Parameters.Add(paramID);
                 cmd.Parameters.Add(paramNume);
 

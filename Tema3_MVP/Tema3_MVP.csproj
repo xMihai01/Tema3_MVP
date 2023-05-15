@@ -133,15 +133,20 @@
     </Compile>
     <Compile Include="Commands\RelayCommands.cs" />
     <Compile Include="Models\BusinessLogicLayer\ClasaBL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ClasaMaterieBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ElevBL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\MaterieBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProfesorBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\SpecializareBL.cs" />
     <Compile Include="Models\DataAccessLayer\ClasaDA.cs" />
+    <Compile Include="Models\DataAccessLayer\ClasaMaterieDA.cs" />
     <Compile Include="Models\DataAccessLayer\ElevDA.cs" />
+    <Compile Include="Models\DataAccessLayer\MaterieDA.cs" />
     <Compile Include="Models\DataAccessLayer\ProfesorDA.cs" />
     <Compile Include="Models\DataAccessLayer\SpecializareDA.cs" />
     <Compile Include="Models\EntityLayer\Absenta.cs" />
     <Compile Include="Models\EntityLayer\Clasa.cs" />
+    <Compile Include="Models\EntityLayer\ClasaMaterie.cs" />
     <Compile Include="Models\EntityLayer\Elev.cs" />
     <Compile Include="Models\EntityLayer\Materie.cs" />
     <Compile Include="Models\EntityLayer\Nota.cs" />

@@ -43,5 +43,13 @@ namespace Tema3_MVP.Models.EntityLayer
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+        public Materie(string nume)
+        {
+            Nume = nume;
+        }
+        public Materie()
+        {
+
+        }
     }
 }

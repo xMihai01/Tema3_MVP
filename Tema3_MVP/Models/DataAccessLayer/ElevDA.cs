@@ -39,7 +39,14 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlParameter paramIdElev = new SqlParameter("@id", idElev);
                 cmd.Parameters.Add(paramIdElev);
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             }
         }
         public ObservableCollection<Elev> GetElevi()

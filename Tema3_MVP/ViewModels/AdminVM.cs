@@ -85,6 +85,8 @@ namespace Tema3_MVP.ViewModels
         }
 
         private SpecializareBL specializareBL = new SpecializareBL();
+        private MaterieBL materieBL = new MaterieBL();
+        private ClasaMaterieBL clasaMaterieBL = new ClasaMaterieBL();
 
         public AdminVM()
         {
@@ -226,6 +228,76 @@ namespace Tema3_MVP.ViewModels
                 }
             }
         }
+
+        public ICommand AddMaterieButtonCommand => new RelayCommand(AddMaterieButton);
+        public ICommand DeleteMaterieButtonCommand => new RelayCommand(DeleteMaterieButton);
+
+        public void AddMaterieButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Materie name: ", "MVP", materieBL.GetMateriiStringList());
+            if (inputDialog.ShowDialog() == true)
+            {
+                materieBL.AddMaterie(new Materie(inputDialog.Answer));
+                MessageBox.Show("Success! Materie added!");
+            }
+        }
+        public void DeleteMaterieButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Materie ID: ", "0", materieBL.GetMateriiStringList());
+            if (inputDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    materieBL.DeleteMaterie(Int32.Parse(inputDialog.Answer));
+                    MessageBox.Show("Success! Materie with id " + inputDialog.Answer + " removed!");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            }
+        }
+
+        public ICommand AddMaterieToClasaButtonCommand => new RelayCommand(AddMaterieToClasaButton);
+        public ICommand DeleteMaterieFromClasaButtonCommand => new RelayCommand(DeleteMaterieFromClasaButton);
+
+        public void AddMaterieToClasaButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Materie ID: ", "0", materieBL.GetMateriiStringList());
+            InputWindow inputDialogTeza = new InputWindow("Teza? (true/false): ", "false");
+            if (inputDialog.ShowDialog() == true)
+            {
+                if (inputDialogTeza.ShowDialog() == true)
+                {
+                    try
+                    {
+                        clasaMaterieBL.AddClasaMaterie(new ClasaMaterie(SelectedClasa.ClasaID, Int32.Parse(inputDialog.Answer), Boolean.Parse(inputDialogTeza.Answer)));
+                        MessageBox.Show("Success! Clasa with id " + SelectedClasa.ClasaID + " now has a new Materie with id " + inputDialog.Answer + " with teza: " + inputDialogTeza.Answer);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                    }
+                }
+            }
+        }
+        public void DeleteMaterieFromClasaButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter ID to remove: ", "0", clasaMaterieBL.GetClaseMateriiStringListForClasa(SelectedClasa.ClasaID));
+            if (inputDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    clasaMaterieBL.DeleteClasaMaterie(Int32.Parse(inputDialog.Answer));
+                    MessageBox.Show("Success! ClasaMaterie with id " + inputDialog.Answer + " removed!");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(string propertyName)

@@ -42,5 +42,11 @@
         </DataGrid>
         <Button Command="{Binding AddSpecializareButtonCommand}" Content="Adaugare Specializare" HorizontalAlignment="Left" Margin="496,367,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
         <Button Command="{Binding DeleteSpecializareButtonCommand}" Content="Stergere Specializare" HorizontalAlignment="Left" Margin="496,392,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+        <Button Command="{Binding AddMaterieButtonCommand}" Content="Adaugare Materie" HorizontalAlignment="Left" Margin="633,367,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+        <Button Command="{Binding DeleteMaterieButtonCommand}" Content="Stergere Materie" HorizontalAlignment="Left" Margin="633,392,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+        <Button Command="{Binding AddMaterieToClasaButtonCommand}" Content="Add Materie la clasa" HorizontalAlignment="Left" Margin="642,27,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+        <Button Command="{Binding DeleteMaterieFromClasaButtonCommand}" Content="Del Materie la clasa" HorizontalAlignment="Left" Margin="642,70,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+        <Button Command="{Binding UpdateAsocieriClasaMaterieButtonCommand}" Content="Modificare asocieri" HorizontalAlignment="Left" Margin="642,116,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+
     </Grid>
 </Window>

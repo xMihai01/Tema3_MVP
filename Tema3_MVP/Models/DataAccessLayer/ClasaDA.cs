@@ -37,7 +37,13 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlParameter paramIdClasa = new SqlParameter("@id", idClasa);
                 cmd.Parameters.Add(paramIdClasa);
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }catch(Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             }
         }
         public ObservableCollection<Clasa> GetClase()
