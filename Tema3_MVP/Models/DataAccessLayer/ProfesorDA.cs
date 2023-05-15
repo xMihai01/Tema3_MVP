@@ -106,5 +106,30 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 }
             }
         }
+        public bool DoesProfesorExist(int? id)
+        {
+            using (SqlConnection connection = DataAccessUtil.Connect())
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("GetProfesor", connection);
+                SqlParameter paramID = new SqlParameter("@Id_profesor", id);
+                cmd.Parameters.Add(paramID);
+                ObservableCollection<Profesor> Profesori = new ObservableCollection<Profesor>();
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                while (reader.Read())
+                {
+                    Profesor p = new Profesor();
+                    p.ProfesorID = reader.GetInt32(0);
+                    p.Nume = reader.GetString(1);
+                    p.Prenume = reader.GetString(2);
+                    if (reader.IsDBNull(3)) p.ClasaID = null; else p.ClasaID = reader.GetInt32(3);
+                    Profesori.Add(p);
+                }
+                return Profesori.Count() > 0;
+            }
+
+        }
     }
 }

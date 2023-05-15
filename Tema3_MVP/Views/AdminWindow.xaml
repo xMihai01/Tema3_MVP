@@ -9,8 +9,8 @@
     <Grid>
         <Button Command="{Binding AddElevButtonCommand}" Content="Adaugare Elev" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Margin="10,25,0,0" Height="24"/>
         <Button Command="{Binding DeleteElevButtonCommand}" Content="Stergere Elev" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="205" RenderTransformOrigin="-0.162,0.155" Height="25"/>
-        <Button Command="{Binding AddProfesorButtonCommand}" Content="Adaugare Profesor" HorizontalAlignment="Left" Margin="264,25,0,0" VerticalAlignment="Top" Width="195" Height="24"/>
-        <Button Command="{Binding DeleteProfesorButtonCommand}" Content="Stergere Profesor" HorizontalAlignment="Left" Margin="264,69,0,0" VerticalAlignment="Top" Width="195" Height="27"/>
+        <Button Command="{Binding AddProfesorButtonCommand}" Content="Adaugare Prof" HorizontalAlignment="Left" Margin="264,25,0,0" VerticalAlignment="Top" Width="98" Height="24"/>
+        <Button Command="{Binding DeleteProfesorButtonCommand}" Content="Stergere Prof" HorizontalAlignment="Left" Margin="264,69,0,0" VerticalAlignment="Top" Width="98" Height="27"/>
         <Button Command="{Binding AddClasaButtonCommand}" Content="Adaugare Clasa" HorizontalAlignment="Left" Margin="496,27,0,0" VerticalAlignment="Top" Width="141" RenderTransformOrigin="0.257,0.378"/>
         <Button Command="{Binding DeleteClasaButtonCommand}" Content="Stergere Clasa" HorizontalAlignment="Left" Margin="496,69,0,0" VerticalAlignment="Top" Width="141" Height="27"/>
         <Button Command="{Binding UpdateClasaButtonCommand}" Content="Modificare Clasa" HorizontalAlignment="Left" Margin="496,121,0,0" VerticalAlignment="Top" Width="141" Height="25"/>
@@ -46,7 +46,10 @@
         <Button Command="{Binding DeleteMaterieButtonCommand}" Content="Stergere Materie" HorizontalAlignment="Left" Margin="633,392,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
         <Button Command="{Binding AddMaterieToClasaButtonCommand}" Content="Add Materie la clasa" HorizontalAlignment="Left" Margin="642,27,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
         <Button Command="{Binding DeleteMaterieFromClasaButtonCommand}" Content="Del Materie la clasa" HorizontalAlignment="Left" Margin="642,70,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
-        <Button Command="{Binding UpdateAsocieriClasaMaterieButtonCommand}" Content="Modificare asocieri" HorizontalAlignment="Left" Margin="642,116,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+        <Button Command="{Binding AddMaterieToProfesorButtonCommand}" Content="Add Materie la prof" HorizontalAlignment="Left" Margin="367,25,0,0" VerticalAlignment="Top" Height="25" Width="110"/>
+        <Button Command="{Binding DeleteMaterieFromProfesorButtonCommand}" Content="Del Materie la prof" HorizontalAlignment="Left" Margin="367,71,0,0" VerticalAlignment="Top" Height="25" Width="110"/>
+        <Button Command="{Binding AddSemestruButtonCommand}" Content="Adaugare Semestru" HorizontalAlignment="Left" Margin="46,362,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
+        <Button Command="{Binding DeleteSemestruButtonCommand}" Content="Stergere Semestru" HorizontalAlignment="Left" Margin="46,387,0,0" VerticalAlignment="Top" Height="25" Width="132"/>
 
     </Grid>
 </Window>

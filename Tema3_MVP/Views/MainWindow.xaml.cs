@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Tema3_MVP.Models.BusinessLogicLayer;
 using Tema3_MVP.Utils;
 using Tema3_MVP.ViewModels;
 namespace Tema3_MVP.Views
@@ -56,6 +57,20 @@ namespace Tema3_MVP.Views
                 adminWindow.Show();
               
                 this.Close();
+            }
+            if (mainVM.PersonType == "Profesor")
+            {
+                try
+                {
+                    ProfesorBL pbl = new ProfesorBL();
+                    if (!pbl.DoesProfesorExist(Int32.Parse(mainVM.UserName)))
+                        throw new Exception();
+                    ProfesorWindow profesorWindow = new ProfesorWindow(Int32.Parse(mainVM.UserName));
+                    profesorWindow.Show();
+                }catch(Exception ex)
+                {
+                    MessageBox.Show("You must enter a valid ID!");
+                }
             }
                 
         }

@@ -87,6 +87,8 @@ namespace Tema3_MVP.ViewModels
         private SpecializareBL specializareBL = new SpecializareBL();
         private MaterieBL materieBL = new MaterieBL();
         private ClasaMaterieBL clasaMaterieBL = new ClasaMaterieBL();
+        private ProfesorMaterieBL profesorMaterieBL = new ProfesorMaterieBL();
+        private SemestruBL semestruBL= new SemestruBL();
 
         public AdminVM()
         {
@@ -238,7 +240,7 @@ namespace Tema3_MVP.ViewModels
             if (inputDialog.ShowDialog() == true)
             {
                 materieBL.AddMaterie(new Materie(inputDialog.Answer));
-                MessageBox.Show("Success! Materie added!");
+                MessageBox.Show("Materie added!");
             }
         }
         public void DeleteMaterieButton()
@@ -249,7 +251,7 @@ namespace Tema3_MVP.ViewModels
                 try
                 {
                     materieBL.DeleteMaterie(Int32.Parse(inputDialog.Answer));
-                    MessageBox.Show("Success! Materie with id " + inputDialog.Answer + " removed!");
+                    MessageBox.Show("Materie with id " + inputDialog.Answer + " removed!");
                 }
                 catch (Exception e)
                 {
@@ -272,7 +274,7 @@ namespace Tema3_MVP.ViewModels
                     try
                     {
                         clasaMaterieBL.AddClasaMaterie(new ClasaMaterie(SelectedClasa.ClasaID, Int32.Parse(inputDialog.Answer), Boolean.Parse(inputDialogTeza.Answer)));
-                        MessageBox.Show("Success! Clasa with id " + SelectedClasa.ClasaID + " now has a new Materie with id " + inputDialog.Answer + " with teza: " + inputDialogTeza.Answer);
+                        MessageBox.Show("Clasa with id " + SelectedClasa.ClasaID + " now has a new Materie with id " + inputDialog.Answer + " with teza: " + inputDialogTeza.Answer);
                     }
                     catch (Exception e)
                     {
@@ -289,7 +291,74 @@ namespace Tema3_MVP.ViewModels
                 try
                 {
                     clasaMaterieBL.DeleteClasaMaterie(Int32.Parse(inputDialog.Answer));
-                    MessageBox.Show("Success! ClasaMaterie with id " + inputDialog.Answer + " removed!");
+                    MessageBox.Show("ClasaMaterie with id " + inputDialog.Answer + " removed!");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            }
+        }
+
+        public ICommand AddMaterieToProfesorButtonCommand => new RelayCommand(AddMaterieToProfesorButton);
+        public ICommand DeleteMaterieFromProfesorButtonCommand => new RelayCommand(DeleteMaterieFromProfesorButton);
+
+        public void AddMaterieToProfesorButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Materie ID: ", "0", materieBL.GetMateriiStringList());
+            if (inputDialog.ShowDialog() == true)
+            {
+
+                try
+                {
+                    profesorMaterieBL.AddProfesorMaterie(new ProfesorMaterie(SelectedProfesor.ProfesorID, Int32.Parse(inputDialog.Answer)));
+                    MessageBox.Show("Profesor with id " + SelectedProfesor.ProfesorID + " now has a new Materie with id " + inputDialog.Answer );
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+
+                }
+            }
+        }
+        public void DeleteMaterieFromProfesorButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter ID to remove: ", "0", profesorMaterieBL.GetProfesorMateriiStringListForProfesor(SelectedProfesor.ProfesorID));
+            if (inputDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    profesorMaterieBL.DeleteProfesorMaterie(Int32.Parse(inputDialog.Answer));
+                    MessageBox.Show("ProfesorMaterie with id " + inputDialog.Answer + " removed!");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            }
+        }
+
+        public ICommand AddSemestruButtonCommand => new RelayCommand(AddSemestruButton);
+        public ICommand DeleteSemestruButtonCommand => new RelayCommand(DeleteSemestruButton);
+
+        public void AddSemestruButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Semestru name: ", "Semestrul 2 2023", semestruBL.GetSemestreAsStringList());
+            if (inputDialog.ShowDialog() == true)
+            {
+                semestruBL.AddSemestru(new Semestru(inputDialog.Answer));
+                MessageBox.Show("Success! Semestru added!");
+            }
+        }
+        public void DeleteSemestruButton()
+        {
+            InputWindow inputDialog = new InputWindow("Please enter Semestru ID: ", "0", semestruBL.GetSemestreAsStringList());
+            if (inputDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    semestruBL.DeleteSemestru(Int32.Parse(inputDialog.Answer));
+                    MessageBox.Show("Success! Semestru with id " + inputDialog.Answer + " removed!");
                 }
                 catch (Exception e)
                 {

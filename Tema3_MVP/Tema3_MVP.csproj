@@ -137,12 +137,16 @@
     <Compile Include="Models\BusinessLogicLayer\ElevBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\MaterieBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProfesorBL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProfesorMaterieBL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\SemestruBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\SpecializareBL.cs" />
     <Compile Include="Models\DataAccessLayer\ClasaDA.cs" />
     <Compile Include="Models\DataAccessLayer\ClasaMaterieDA.cs" />
     <Compile Include="Models\DataAccessLayer\ElevDA.cs" />
     <Compile Include="Models\DataAccessLayer\MaterieDA.cs" />
     <Compile Include="Models\DataAccessLayer\ProfesorDA.cs" />
+    <Compile Include="Models\DataAccessLayer\ProfesorMaterieDA.cs" />
+    <Compile Include="Models\DataAccessLayer\SemestruDA.cs" />
     <Compile Include="Models\DataAccessLayer\SpecializareDA.cs" />
     <Compile Include="Models\EntityLayer\Absenta.cs" />
     <Compile Include="Models\EntityLayer\Clasa.cs" />
@@ -151,10 +155,13 @@
     <Compile Include="Models\EntityLayer\Materie.cs" />
     <Compile Include="Models\EntityLayer\Nota.cs" />
     <Compile Include="Models\EntityLayer\Profesor.cs" />
+    <Compile Include="Models\EntityLayer\ProfesorMaterie.cs" />
+    <Compile Include="Models\EntityLayer\Semestru.cs" />
     <Compile Include="Models\EntityLayer\Specializare.cs" />
     <Compile Include="Utils\DataAccessUtil.cs" />
     <Compile Include="ViewModels\AdminVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\ProfesorVM.cs" />
     <Compile Include="Views\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
@@ -163,6 +170,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfesorWindow.xaml.cs">
+      <DependentUpon>ProfesorWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfesorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

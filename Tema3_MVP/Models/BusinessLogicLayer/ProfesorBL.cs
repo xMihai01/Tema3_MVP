@@ -40,5 +40,9 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
             listaProfesori = ProfesorDA.GetProfesori();
             return listaProfesori;
         }
+        public bool DoesProfesorExist(int? id)
+        {
+            return ProfesorDA.DoesProfesorExist(id);
+        }
     }
 }
