@@ -64,12 +64,13 @@ namespace Tema3_MVP.Views
                 {
                     ProfesorBL pbl = new ProfesorBL();
                     if (!pbl.DoesProfesorExist(Int32.Parse(mainVM.UserName)))
-                        throw new Exception();
+                        throw new Exception("You must enter a valid ID!");
                     ProfesorWindow profesorWindow = new ProfesorWindow(Int32.Parse(mainVM.UserName));
                     profesorWindow.Show();
+                    this.Close();
                 }catch(Exception ex)
                 {
-                    MessageBox.Show("You must enter a valid ID!");
+                    MessageBox.Show(ex.Message);
                 }
             }
                 

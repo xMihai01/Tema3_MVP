@@ -16,6 +16,10 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
         {
             absentaDA.AddAbsenta(ElevID, MaterieID, SemestruID);
         }
+        public void DeleteAbsenta(int? AbsentaID)
+        {
+            absentaDA.DeleteAbsenta(AbsentaID);
+        }
         public ObservableCollection<Absenta> GetAbsente(int? ElevID, int? MaterieID, int? SemestruID)
         {
             return absentaDA.GetAbsente(ElevID, MaterieID, SemestruID);

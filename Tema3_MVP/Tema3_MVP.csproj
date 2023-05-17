@@ -138,6 +138,7 @@
     <Compile Include="Models\BusinessLogicLayer\ElevBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ElevMaterieBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\MaterieBL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\NotaBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProfesorBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProfesorMaterieBL.cs" />
     <Compile Include="Models\BusinessLogicLayer\SemestruBL.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Models\DataAccessLayer\ClasaMaterieDA.cs" />
     <Compile Include="Models\DataAccessLayer\ElevDA.cs" />
     <Compile Include="Models\DataAccessLayer\MaterieDA.cs" />
+    <Compile Include="Models\DataAccessLayer\NotaDA.cs" />
     <Compile Include="Models\DataAccessLayer\ProfesorDA.cs" />
     <Compile Include="Models\DataAccessLayer\ProfesorMaterieDA.cs" />
     <Compile Include="Models\DataAccessLayer\SemestruDA.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="ViewModels\AdminVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\ProfesorAbsenteVM.cs" />
+    <Compile Include="ViewModels\ProfesorNoteVM.cs" />
     <Compile Include="ViewModels\ProfesorVM.cs" />
     <Compile Include="Views\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
@@ -179,6 +182,9 @@
     </Compile>
     <Compile Include="Views\ProfesorAbsenteWindow.xaml.cs">
       <DependentUpon>ProfesorAbsenteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfesorNoteWindow.xaml.cs">
+      <DependentUpon>ProfesorNoteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfesorWindow.xaml.cs">
       <DependentUpon>ProfesorWindow.xaml</DependentUpon>
@@ -225,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProfesorAbsenteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfesorNoteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

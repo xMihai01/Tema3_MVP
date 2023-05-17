@@ -126,6 +126,7 @@ namespace Tema3_MVP.ViewModels
         }
         
         public ICommand ViewAbsenteButtonCommand => new RelayCommand(ViewAbsenteButton);
+        public ICommand ViewNoteButtonCommand => new RelayCommand(ViewNoteButton);
         public void ViewAbsenteButton()
         {
             if (SelectedElev == null || SelectedClass == null || SelectedMaterie == null || SelectedSemestru == null)
@@ -138,7 +139,18 @@ namespace Tema3_MVP.ViewModels
             profesorAbsenteWindow.Show();
 
         }
+        public void ViewNoteButton()
+        {
+            if (SelectedElev == null || SelectedClass == null || SelectedMaterie == null || SelectedSemestru == null)
+            {
+                MessageBox.Show("You must select a clasa, materie, semestru and elev to continue");
+                return;
+            }
+            elevMaterieBL.AddElevMaterie(new ElevMaterie(SelectedElev.ElevID, materiiDic[SelectedMaterie].MaterieID, semestreDic[SelectedSemestru].SemestruID));
+            ProfesorNoteWindow profesorNoteWindow = new ProfesorNoteWindow(SelectedElev, materiiDic[SelectedMaterie], semestreDic[SelectedSemestru]);
+            profesorNoteWindow.Show();
 
+        }
         public ProfesorVM(int? profesorID)
         {
             ProfesorID = profesorID;

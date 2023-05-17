@@ -36,5 +36,14 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
             }
             return cms;
         }
+        public ClasaMaterie GetClasaMaterie(int? ClasaID, int? MaterieID)
+        {
+            return ClasaMaterieDA.GetClasaMaterie(ClasaID, MaterieID);
+        }
+        public bool IsTezaRequired(int? ClasaID, int? MaterieID)
+        {
+            ClasaMaterie cm = GetClasaMaterie(ClasaID, MaterieID);
+            return cm.Teza;
+        }
     }
 }

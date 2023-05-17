@@ -51,9 +51,16 @@ namespace Tema3_MVP.ViewModels
             }
         }
         public ICommand AddAbsentaButtonCommand => new RelayCommand(AddAbsentaButton);
+        public ICommand DeleteAbsentaButtonCommand => new RelayCommand(DeleteAbsentaButton);
+
         public void AddAbsentaButton()
         {
             absentaBL.AddAbsenta(elev.ElevID, materie.MaterieID, semestru.SemestruID);
+            UpdateAbsente();
+        }
+        public void DeleteAbsentaButton()
+        {
+            absentaBL.DeleteAbsenta(SelectedAbsenta.AbsentaID);
             UpdateAbsente();
         }
         private void UpdateAbsente()
@@ -65,7 +72,7 @@ namespace Tema3_MVP.ViewModels
             this.elev = elev;
             this.materie = materie;
             this.semestru = semestru;
-            LabelInfoAbsente = "Viewing " + elev.Nume + " " + elev.Prenume + "'s absente for materie " + materie.Nume + ", semester: " + semestru.Nume;
+            LabelInfoAbsente = "Viewing " + elev.Nume + " " + elev.Prenume + "'s absente\n for materie " + materie.Nume + ", semester: " + semestru.Nume;
             UpdateAbsente();
         }
         public event PropertyChangedEventHandler PropertyChanged;

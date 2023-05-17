@@ -82,5 +82,32 @@ namespace Tema3_MVP.Models.DataAccessLayer
             }
 
         }
+        public ClasaMaterie GetClasaMaterie(int? ClasaID, int? MaterieID)
+        {
+            using (SqlConnection connection = DataAccessUtil.Connect())
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("GetClasaMaterie", connection);
+                SqlParameter paramClasaID = new SqlParameter("@ClasaID", ClasaID);
+                SqlParameter paramMaterieID = new SqlParameter("@MaterieID", MaterieID);
+                cmd.Parameters.Add(paramClasaID);
+                cmd.Parameters.Add(paramMaterieID);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                ClasaMaterie c = null;
+                if (reader.Read())
+                {
+                    c = new ClasaMaterie();
+                    c.ClasaID = reader.GetInt32(0);
+                    c.MaterieID = reader.GetInt32(1);
+                    c.Teza = reader.GetBoolean(2);
+                    c.ClasaMaterieID = reader.GetInt32(3);
+            
+                }
+                reader.Close();
+                return c;
+            }
+
+        }
     }
 }

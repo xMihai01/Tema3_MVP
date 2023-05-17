@@ -36,14 +36,14 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 cmd.ExecuteNonQuery();
             }
         }
-       /* public void DeleteAbsenta(int? idAbsenta)
+        public void DeleteAbsenta(int? idAbsenta)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("DeleteAbsenta", connection);
+                SqlCommand cmd = new SqlCommand("MotiveazaAbsenta", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramIdAbsenta = new SqlParameter("@id", idAbsenta);
+                SqlParameter paramIdAbsenta = new SqlParameter("@AbsentaID", idAbsenta);
                 cmd.Parameters.Add(paramIdAbsenta);
                 try
                 {
@@ -54,7 +54,7 @@ namespace Tema3_MVP.Models.DataAccessLayer
                     MessageBox.Show(e.Message);
                 }
             }
-        }*/
+        }
         public ObservableCollection<Absenta> GetAbsente(int? ElevID, int? MaterieID, int? SemestruID)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())

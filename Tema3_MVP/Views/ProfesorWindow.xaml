@@ -22,6 +22,8 @@
         <ComboBox x:Name="ComboSemestre" HorizontalAlignment="Left" Margin="544,179,0,0" VerticalAlignment="Top" Width="148" Height="26" ItemsSource="{Binding Semestre}" SelectedValue="{Binding SelectedSemestru}"/>
         <Label Content="Semestru" HorizontalAlignment="Left" Margin="479,179,0,0" VerticalAlignment="Top"/>
         <Button Command="{Binding ViewAbsenteButtonCommand}" Content="View Absente" HorizontalAlignment="Left" Margin="576,250,0,0" VerticalAlignment="Top" Width="84" Height="20"/>
+        <Button Command="{Binding ViewNoteButtonCommand}" Content="View Note" HorizontalAlignment="Left" Margin="576,294,0,0" VerticalAlignment="Top" Width="84" Height="20"/>
+        <Button Content="Back to main windoww" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
 
     </Grid>
