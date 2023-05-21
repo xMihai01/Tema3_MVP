@@ -43,5 +43,9 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
         {
             return elevDA.GetEleviForClasa(ClasaID);
         }
+        public Elev GetElev(int? ElevID)
+        {
+            return elevDA.GetElev(ElevID);
+        }
     }
 }

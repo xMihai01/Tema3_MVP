@@ -22,17 +22,6 @@ namespace Tema3_MVP.ViewModels
                 NotifyPropertyChanged(nameof(UserName));
             }
         }
-        private string _password;
-
-        public string PasswordText
-        {
-            get { return _password; }
-            set
-            {
-                _password = value;
-                NotifyPropertyChanged(nameof(PasswordText));
-            }
-        }
 
         private string _personType;
 

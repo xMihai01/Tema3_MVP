@@ -5,14 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tema3_MVP.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="480">
+        Title="MainWindow" Height="256" Width="475">
     <Grid>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="94,122,0,0" VerticalAlignment="Top"/>
+        <Label Content="ID:" HorizontalAlignment="Left" Margin="132,122,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="UserNameText" Text="{Binding UserName}" HorizontalAlignment="Center" Height="26" Margin="0,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
-        <Label Content="Password:" HorizontalAlignment="Left" Margin="94,162,0,0" VerticalAlignment="Top" Width="86" Height="26"/>
         <Label Content="Login as:" HorizontalAlignment="Left" Margin="104,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.259,0.569"/>
         <ComboBox x:Name="ComboPersonTypes" HorizontalAlignment="Center" Margin="0,61,0,0" VerticalAlignment="Top" Width="148" Height="26" ItemsSource="{Binding personType}" SelectedValue="{Binding PersonType}"/>
-        <Button Content="Log in" Click="Button_Click" HorizontalAlignment="Center" Margin="0,224,0,0" VerticalAlignment="Top" Width="96" Height="41"/>
-        <TextBox x:Name="PasswordText" Text="{Binding PasswordText}" Margin="0,167,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="148" Height="26"/>
+        <Button Content="Log in" Click="Button_Click" HorizontalAlignment="Center" Margin="0,175,0,0" VerticalAlignment="Top" Width="96" Height="41"/>
     </Grid>
 </Window>

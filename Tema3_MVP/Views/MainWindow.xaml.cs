@@ -40,13 +40,10 @@ namespace Tema3_MVP.Views
                 try
                 {
                     connection.Open();
-                    if (connection.State == ConnectionState.Open)
-                    {
-                        MessageBox.Show("You have been successfully connected to the database!");
-                    }
-                    else
+                    if (connection.State != ConnectionState.Open)
                     {
                         MessageBox.Show("Connection failed.");
+                        return;
                     }
                 }
                 catch (SqlException) { }
@@ -82,6 +79,22 @@ namespace Tema3_MVP.Views
                         throw new Exception("You must enter a valid ID!");
                     DiriginteWindow DiriginteWindow = new DiriginteWindow(Int32.Parse(mainVM.UserName));
                     DiriginteWindow.Show();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (mainVM.PersonType == "Elev")
+            {
+                try
+                {
+                    ElevBL pbl = new ElevBL();
+                    if (pbl.GetElev(Int32.Parse(mainVM.UserName)) == null)
+                        throw new Exception("You must enter a valid ID!");
+                    ElevWindow elevWindow = new ElevWindow(Int32.Parse(mainVM.UserName));
+                    elevWindow.Show();
                     this.Close();
                 }
                 catch (Exception ex)
