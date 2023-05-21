@@ -39,5 +39,35 @@ namespace Tema3_MVP.Models.DataAccessLayer
                 }
             }
         }
+        public ElevMaterie GetElevMaterie(int? ElevID, int? MaterieID, int? SemestruID)
+        {
+            using (SqlConnection connection = DataAccessUtil.Connect())
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("GetElevMaterie", connection);
+                SqlParameter paramElevID = new SqlParameter("@ElevID", ElevID);
+                SqlParameter paramMaterieID = new SqlParameter("@MaterieID", MaterieID);
+                SqlParameter paramSemestruID = new SqlParameter("@SemestruID", SemestruID);
+                cmd.Parameters.Add(paramElevID);
+                cmd.Parameters.Add(paramMaterieID);
+                cmd.Parameters.Add(paramSemestruID);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                ElevMaterie c = null;
+                if (reader.Read())
+                {
+                    c = new ElevMaterie();
+                    c.ElevMaterieID = reader.GetInt32(0);
+                    c.ElevID = reader.GetInt32(2);
+                    c.MaterieID = reader.GetInt32(1);
+                    c.SemestruID = reader.GetInt32(3);
+                    if (reader.IsDBNull(4)) c.Medie = null; else c.Medie = reader.GetDouble(4);
+
+                }
+                reader.Close();
+                return c;
+            }
+
+        }
     }
 }

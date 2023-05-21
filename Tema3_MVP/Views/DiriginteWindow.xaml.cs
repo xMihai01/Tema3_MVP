@@ -11,23 +11,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Tema3_MVP.Models.EntityLayer;
 using Tema3_MVP.ViewModels;
 
 namespace Tema3_MVP.Views
 {
     /// <summary>
-    /// Interaction logic for ProfesorAbsenteWindow.xaml
+    /// Interaction logic for DiriginteWindow.xaml
     /// </summary>
-    public partial class ProfesorAbsenteWindow : Window
+    public partial class DiriginteWindow : Window
     {
-        public ProfesorAbsenteVM profesorAbsenteVM;
-        public ProfesorAbsenteWindow(Elev elev, Materie materie, Semestru semestru, bool canAddAbsente = true)
+        public DiriginteVM diriginteVM;
+        public DiriginteWindow(int? ProfesorID)
         {
             InitializeComponent();
-            profesorAbsenteVM = new ProfesorAbsenteVM(elev, materie, semestru);
-            AddAbsentaButton.IsEnabled = canAddAbsente;
-            DataContext = profesorAbsenteVM;
+            diriginteVM = new DiriginteVM(ProfesorID);
+            DataContext = diriginteVM;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }

@@ -57,5 +57,9 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
             return clase;
 
         }
+        public Clasa GetClasa(int? ProfesorID)
+        {
+            return ClasaDA.GetClasa(ProfesorID);
+        }
     }
 }

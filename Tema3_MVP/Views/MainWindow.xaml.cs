@@ -73,7 +73,23 @@ namespace Tema3_MVP.Views
                     MessageBox.Show(ex.Message);
                 }
             }
-                
+            if (mainVM.PersonType == "Diriginte")
+            {
+                try
+                {
+                    ClasaBL pbl = new ClasaBL();
+                    if (pbl.GetClasa(Int32.Parse(mainVM.UserName)) == null)
+                        throw new Exception("You must enter a valid ID!");
+                    DiriginteWindow DiriginteWindow = new DiriginteWindow(Int32.Parse(mainVM.UserName));
+                    DiriginteWindow.Show();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
         }
       
     }

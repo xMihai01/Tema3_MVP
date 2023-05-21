@@ -1,0 +1,30 @@
+﻿<Window x:Class="Tema3_MVP.Views.DiriginteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tema3_MVP.Views"
+        mc:Ignorable="d"
+        Title="DiriginteWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid Grid.Column="0" ItemsSource="{Binding Elevi}" SelectedItem="{Binding SelectedElev}" Margin="55,88,459,164" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id__elev" Binding="{Binding ElevID}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="nume" Binding="{Binding Nume}"/>
+                <DataGridTextColumn Header="prenume" Binding="{Binding Prenume}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="ComboMaterii" HorizontalAlignment="Left" Margin="544,130,0,0" VerticalAlignment="Top" Width="148" Height="26" ItemsSource="{Binding Materii}" SelectedValue="{Binding SelectedMaterie}"/>
+        <Label Content="Materii" HorizontalAlignment="Left" Margin="492,130,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboSemestre" HorizontalAlignment="Left" Margin="544,179,0,0" VerticalAlignment="Top" Width="148" Height="26" ItemsSource="{Binding Semestre}" SelectedValue="{Binding SelectedSemestru}"/>
+        <Label Content="Semestru" HorizontalAlignment="Left" Margin="479,179,0,0" VerticalAlignment="Top"/>
+        <Button Command="{Binding ViewAbsenteButtonCommand}" Content="View Absente" HorizontalAlignment="Left" Margin="576,250,0,0" VerticalAlignment="Top" Width="84" Height="20"/>
+        <Button Command="{Binding ViewMediiElevButtonCommand}" Content="Medii elev" HorizontalAlignment="Left" Margin="576,294,0,0" VerticalAlignment="Top" Width="84" Height="20"/>
+        <Button Content="Back to main windoww" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Command="{Binding ViewTopMediiButtonCommand}" Content="Top Medii" HorizontalAlignment="Left" Margin="576,348,0,0" VerticalAlignment="Top" Width="84" Height="20"/>
+        <Button Command="{Binding ViewStatsButtonCommand}" Content="Class stats" HorizontalAlignment="Left" Margin="434,250,0,0" VerticalAlignment="Top" Width="117" Height="20"/>
+        <Button Command="{Binding ViewKickedButtonCommand}" Content="Elevi exmatriculati" HorizontalAlignment="Left" Margin="434,294,0,0" VerticalAlignment="Top" Width="117" Height="20"/>
+
+
+    </Grid>
+</Window>

@@ -167,12 +167,16 @@
     <Compile Include="Models\EntityLayer\Specializare.cs" />
     <Compile Include="Utils\DataAccessUtil.cs" />
     <Compile Include="ViewModels\AdminVM.cs" />
+    <Compile Include="ViewModels\DiriginteVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\ProfesorAbsenteVM.cs" />
     <Compile Include="ViewModels\ProfesorNoteVM.cs" />
     <Compile Include="ViewModels\ProfesorVM.cs" />
     <Compile Include="Views\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiriginteWindow.xaml.cs">
+      <DependentUpon>DiriginteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InputWindow.xaml.cs">
       <DependentUpon>InputWindow.xaml</DependentUpon>
@@ -219,6 +223,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DiriginteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

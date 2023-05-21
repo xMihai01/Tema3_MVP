@@ -24,5 +24,22 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
         {
             return absentaDA.GetAbsente(ElevID, MaterieID, SemestruID);
         }
+        public ObservableCollection<Absenta> GetAbsenteForElev(int? ElevID, int? SemestruID)
+        {
+            return absentaDA.GetAbsenteForElev(ElevID, SemestruID);
+        }
+        public string GetKickedEleviMessage(ObservableCollection<Elev> elevi, int? SemestruID)
+        {
+            string message = "";
+            foreach (Elev elev in elevi)
+            {
+                var absente = absentaDA.GetAbsenteForElev(elev.ElevID, SemestruID);
+                if (absente.Count > 10)
+                {
+                    message += elev.Nume + " " + elev.Prenume + ", absente: " + absente.Count + "\n"; 
+                }
+            }
+            return message;
+        }
     }
 }

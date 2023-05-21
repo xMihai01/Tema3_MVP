@@ -138,7 +138,8 @@ namespace Tema3_MVP.ViewModels
             this.materie = materie;
             this.semestru = semestru;
             LabelInfoNote = "Viewing " + elev.Nume + " " + elev.Prenume + "'s Note\n for materie " + materie.Nume + ", semester: " + semestru.Nume;
-            LabelInfoMedie = "Medie: N/A";
+            double? medie = NotaBL.GetMedie(elev.ElevID, materie.MaterieID, semestru.SemestruID);
+            LabelInfoMedie = "Medie: " + (medie == null ? "N/A" : medie.ToString());
             UpdateNote();
         }
         public event PropertyChangedEventHandler PropertyChanged;

@@ -49,5 +49,21 @@ namespace Tema3_MVP.Models.BusinessLogicLayer
             }
             return materii;
         }
+        public ObservableCollection<Materie> GetMateriiForClasa(int? ClasaID)
+        {
+            return MaterieDA.GetMateriiForClasa(ClasaID);
+        }
+        public ObservableCollection<string> GetMateriiForClasaStringList(int? ClasaID)
+        {
+
+            ObservableCollection<Materie> materiiList = MaterieDA.GetMateriiForClasa(ClasaID);
+            ObservableCollection<string> materii = new ObservableCollection<string>();
+
+            foreach (Materie mat in materiiList)
+            {
+                materii.Add(mat.Nume);
+            }
+            return materii;
+        }
     }
 }

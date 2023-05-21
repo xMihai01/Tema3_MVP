@@ -69,6 +69,31 @@ namespace Tema3_MVP.Models.DataAccessLayer
             }
 
         }
+        public Clasa GetClasa(int? ProfesorID)
+        {
+            using (SqlConnection connection = DataAccessUtil.Connect())
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("GetClasa", connection);
+                SqlParameter param = new SqlParameter("@ProfesorID", ProfesorID);
+                cmd.Parameters.Add(param);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                Clasa c = null;
+                while (reader.Read())
+                {
+                    c = new Clasa();
+                    c.ClasaID = reader.GetInt32(0);
+                    if (reader.IsDBNull(1)) c.DiriginteID = null; else c.DiriginteID = reader.GetInt32(1);
+                    c.Nume = reader.GetString(2);
+                    if (reader.IsDBNull(3)) c.SpecializareID = null; else c.SpecializareID = reader.GetInt32(3);
+       
+                }
+                reader.Close();
+                return c;
+            }
+
+        }
 
         public ObservableCollection<Clasa> GetClaseForProfesor(int? ProfesorID)
         {

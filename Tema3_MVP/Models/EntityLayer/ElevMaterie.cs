@@ -62,8 +62,8 @@ namespace Tema3_MVP.Models.EntityLayer
                 NotifyPropertyChanged(nameof(SemestruID));
             }
         }
-        private float _Medie;
-        public float Medie
+        private double? _Medie;
+        public double? Medie
         {
             get
             {
@@ -87,6 +87,10 @@ namespace Tema3_MVP.Models.EntityLayer
             ElevID = elevID;
             MaterieID = materieID;
             SemestruID = semestruID;
+        }
+        public ElevMaterie()
+        {
+
         }
     }
 }

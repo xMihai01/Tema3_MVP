@@ -115,5 +115,28 @@ namespace Tema3_MVP.Models.DataAccessLayer
             }
 
         }
+        public ObservableCollection<Materie> GetMateriiForClasa(int? ClasaID)
+        {
+            using (SqlConnection connection = DataAccessUtil.Connect())
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("GetMateriiForClasa", connection);
+                SqlParameter paramClasaID = new SqlParameter("@ClasaID", ClasaID);
+                cmd.Parameters.Add(paramClasaID);
+                ObservableCollection<Materie> Materii = new ObservableCollection<Materie>();
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Materie m = new Materie();
+                    m.MaterieID = reader.GetInt32(0);
+                    m.Nume = reader.GetString(1);
+                    Materii.Add(m);
+                }
+                reader.Close();
+                return Materii;
+            }
+
+        }
     }
 }

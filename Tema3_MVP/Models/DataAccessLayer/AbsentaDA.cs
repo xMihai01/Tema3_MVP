@@ -84,73 +84,33 @@ namespace Tema3_MVP.Models.DataAccessLayer
             }
 
         }
-
-        /*public ObservableCollection<Absenta> GetClaseForProfesor(int? ProfesorID)
+        public ObservableCollection<Absenta> GetAbsenteForElev(int? ElevID, int? SemestruID)
         {
             using (SqlConnection connection = DataAccessUtil.Connect())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("GetClaseForProfesor", connection);
-                SqlParameter paramID = new SqlParameter("@ProfesorID", ProfesorID);
-                cmd.Parameters.Add(paramID);
-                ObservableCollection<Absenta> Clase = new ObservableCollection<Absenta>();
+                SqlCommand cmd = new SqlCommand("GetAbsenteForElev", connection);
+                SqlParameter paramElev = new SqlParameter("@ElevID", ElevID);
+                SqlParameter paramSemestru = new SqlParameter("@SemestruID", SemestruID);
+                cmd.Parameters.Add(paramSemestru);
+                cmd.Parameters.Add(paramElev);
+                ObservableCollection<Absenta> Absente = new ObservableCollection<Absenta>();
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Absenta c = new Absenta();
-                    c.AbsentaID = reader.GetInt32(0);
-                    if (reader.IsDBNull(1)) c.DiriginteID = null; else c.DiriginteID = reader.GetInt32(1);
-                    c.Nume = reader.GetString(2);
-                    if (reader.IsDBNull(3)) c.SpecializareID = null; else c.SpecializareID = reader.GetInt32(3);
-                    Clase.Add(c);
+                    Absenta abs = new Absenta();
+                    abs.AbsentaID = reader.GetInt32(0);
+                    abs.Tip = reader.GetString(1);
+                    abs.Date = reader.GetDateTime(2);
+                    abs.ElevMaterieID = reader.GetInt32(3);
+                    Absente.Add(abs);
                 }
                 reader.Close();
-                return Clase;
+                return Absente;
             }
 
         }
-        public void UpdateAbsenta(Absenta Absenta)
-        {
-            using (SqlConnection connection = DataAccessUtil.Connect())
-            {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("UpdateAbsenta", connection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramID = new SqlParameter("@AbsentaID", Absenta.AbsentaID);
-                SqlParameter paramNume = new SqlParameter("@Nume_Absenta", Absenta.Nume);
-                SqlParameter paramDiriginteID;
-                if (Absenta.DiriginteID == null)
-                {
-                    paramDiriginteID = new SqlParameter("@DiriginteID", DBNull.Value);
-                }
-                else
-                {
-                    paramDiriginteID = new SqlParameter("@DiriginteID", Absenta.DiriginteID);
-                }
-                SqlParameter paramSpecializareID;
-                if (Absenta.SpecializareID == null)
-                {
-                    paramSpecializareID = new SqlParameter("@SpecializareID", DBNull.Value);
-                }
-                else
-                {
-                    paramSpecializareID = new SqlParameter("@SpecializareID", Absenta.SpecializareID);
-                }
-                cmd.Parameters.Add(paramID);
-                cmd.Parameters.Add(paramNume);
-                cmd.Parameters.Add(paramDiriginteID);
-                cmd.Parameters.Add(paramSpecializareID);
 
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch (SqlException)
-                {
-                    MessageBox.Show("Couldn't update entry. One of the given ids couldn't be found or an unknown error occurred");
-                }
-            }
-        }*/
     }
 }
